@@ -17,4 +17,4 @@ Make sureS10wifiAP is executable, or it won't have any effect.
 
     /etc/init/e20-kit1-demo.conf
 
-This file assumes/requires that directory tree e20-kit1-demo resides in `/home/snap`. If you pulled the example souce code directly from github, you may need to move the files, or change the path to app_server.py in file e20-kit1-demo.conf.
+This file assumes/requires that directory tree e20-kit1-demo resides in `/home/snap`. If you pulled the example source code directly from GitHub, you may need to move the files, or change the path to app_server.py in file e20-kit1-demo.conf.
