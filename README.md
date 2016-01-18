@@ -70,15 +70,15 @@ Copy the entire "tree" of files in the web_app directory onto your E20
 
 After you have placed the files, follow the instructions in the "readme" file in that directory too.
 
-#### Now transition to the ["Running This Example"](#running-this-example) instructions earlier in this README
+#### Run the example
 
-Either: 
+Now that everything is set up, you can either: 
 
-**A)** Power down your E20, and then go to page 1 (where you will power it back up)
+**A)** Power down your E20, and then follow the steps in the ["Running This Example"](#running-this-example) instructions earlier in this README
 
 or
 
-**B)** Just *reboot* your E20 (from the command line) and skip over the part about  "powering up the E20" when you go to page 1
+**B)** Just *reboot* your E20 (from the command line) and skip over the part about "powering up the E20" in the ["Running This Example"](#running-this-example) instructions.
 
 ## Exploring This Example
 
