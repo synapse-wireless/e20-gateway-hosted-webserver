@@ -66,7 +66,7 @@ Look in the "e20-sys" directory, and follow the instructions in the "readme" fil
 #### Install the SNAP node status web app
 Copy the entire "tree" of files in the web_app directory onto your E20
 
-NOTE – the files must go into a directory tree on the E20 such that the resulting path matches the one specified in e20-kit1-demo.conf is correct, or you must manually edit that file.
+**NOTE** – the files must go into a directory tree on the E20 such that the resulting path matches the one specified in e20-kit1-demo.conf is correct, or you must manually edit that file.
 
 After you have placed the files, follow the instructions in the "readme" file in that directory too.
 
