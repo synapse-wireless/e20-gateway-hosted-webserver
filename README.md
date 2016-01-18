@@ -84,6 +84,6 @@ or
 
 The web application is a basic Python program built with high-performance libraries, Tornado and SNAP Connect. The Javascript/HTML is kept deliberately simple for ease of understanding, although it showcases a low-latency websockets technique. This can be easily extended to REST interfaces, and other web/backend approaches to fit application requirements. More information about the software used in this example can be found in the "Software" guide (look in the same directory where you found this Quick Start).
 
-See the README.md files in the [e20_sys](e20_sys) and [web_app](web_app) directories for more details and library dependencies.
+See the README.md files in the [e20-sys](e20-sys) and [web_app](web_app) directories for more details and library dependencies.
 
 <!-- meta-tags: vvv-e20, vvv-sn171, vvv-rf200, vvv-ek5100, vvv-snapconnect, vvv-js, vvv-html, vvv-python, vvv-example -->
