@@ -26,6 +26,7 @@ The Synapse Portal IDE will allow complete embedded module development, as well 
 Power up the E20 and use a PC or mobile device to connect to its WiFi access point using these credentials:
 
 > **SSID:** synapse-e20
+>
 > **Password:** synapse1
 
 #### Visit the E20's SNAP node status page
