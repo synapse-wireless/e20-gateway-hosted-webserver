@@ -924,7 +924,7 @@ The above HTML is standard boilerplate…
   </head>
 ```
 
-The above HTML defines the header of the page (for example, the <title>), plus pulls in four other files.
+The above HTML defines the header of the page (for example, the `<title>`), plus pulls in four other files.
 
 NOTE – many of these other files have their own walk-through sections, later in this document.
 
@@ -937,7 +937,7 @@ For an example of just how much impact a CSS file can have on a website without 
 
 Next the definition of the body (main portion) of the web page begins.
 
-NOTE – the body definition is everything between the <body> and </body> tags.
+NOTE – the body definition is everything between the `<body>` and `</body>` tags.
 
 ```html
   <body style="background:white">
@@ -964,7 +964,7 @@ NOTE – the main purpose of giving “div”s identifiers (“id”s such as id
     </div>
 ```
 
-The main portion of the page is taken up by a dynamic table (dynamic in that the number of rows is not fixed, but instead depends on how many live SNAP Nodes you have reporting in, plus the contents of each column represent “live” data). Each table row (<tr>, </tr>) is made up of multiple columns. Each table column (<th>, </th>, where “th” stands for “t”able “h”eading) has a header defined here. The actual values get set by some Javascript code that is covered separately.
+The main portion of the page is taken up by a dynamic table (dynamic in that the number of rows is not fixed, but instead depends on how many live SNAP Nodes you have reporting in, plus the contents of each column represent “live” data). Each table row (`<tr>`, `</tr>`) is made up of multiple columns. Each table column (`<th>`, `</th>`, where “th” stands for “t”able “h”eading) has a header defined here. The actual values get set by some Javascript code that is covered separately.
 
 NOTE – if you relabel these columns, you must update the Javascript code too (or else your live data will not fill in).
 
@@ -973,7 +973,7 @@ NOTE – if you relabel these columns, you must update the Javascript code too (
 </html>
 ```
 
-These are just the corresponding ending tags to the <body> and <html> tags up above.
+These are just the corresponding ending tags to the `<body>` and `<html>` tags up above.
  
 ### Source Code Walk-through (Cascading Style Sheet mainstyle.css)
 The following code walk-through intersperses commentary (in this font and color) with source code (in this font and color). 
