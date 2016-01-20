@@ -83,7 +83,7 @@ or
 
 ## Exploring This Example
 
-The web application is a basic Python program built with high-performance libraries, Tornado and SNAP Connect. The Javascript/HTML is kept deliberately simple for ease of understanding, although it showcases a low-latency websockets technique. This can be easily extended to REST interfaces, and other web/backend approaches to fit application requirements. More information about the software used in this example can be found in the "Software" guide (look in the same directory where you found this Quick Start).
+The web application is a basic Python program built with high-performance libraries, Tornado and SNAP Connect. The Javascript/HTML is kept deliberately simple for ease of understanding, although it showcases a low-latency websockets technique. This can be easily extended to REST interfaces, and other web/backend approaches to fit application requirements. More information about the software used in this example can be found in the ["Software Walkthrough"](WALKTHROUGH.md) guide in this repository's root directory.
 
 See the README.md files in the [e20-sys](e20-sys) and [web_app](web_app) directories for more details and library dependencies.
 
