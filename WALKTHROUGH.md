@@ -1,13 +1,18 @@
-# Software Guide for E20 Example 1 – Gateway-Hosted Web Server
-For information about “what this example does”, please refer to the corresponding Quick Start Guide.
+![](https://cloud.githubusercontent.com/assets/1317406/12406044/32cd9916-be0f-11e5-9b18-1547f284f878.png)
+# Software Guide for E20 Example – Gateway-Hosted Web Server
+For information about “what this example does”, please refer to the corresponding [README.md](README.md) file in this repository.
 
-Full source code for this example is available on Github here: https://github.com/synapse-wireless/demo-kits
+Full source code for this example is available on GitHub here: 
 
-The Synapse Portal IDE will allow complete embedded module development, as well as wireless sniffer capability – download the latest version here: https://forums.synapse-wireless.com/showthread.php?t=9
+> https://github.com/synapse-wireless/e20-gateway-hosted-webserver
+
+The Synapse Portal IDE will allow complete embedded module development, as well as wireless sniffer capability – download the latest version here: 
+
+> https://forums.synapse-wireless.com/showthread.php?t=9
 
 The web application is a basic Python program built with high-performance libraries, Tornado and SNAP Connect. The Javascript/HTML is kept deliberately simple for ease of understanding, although it showcases a low-latency websockets technique. This can be easily extended to REST interfaces, and other web/backend approaches to fit application requirements.
 
-See the readme.txt in the web_app directory for details and library dependencies.
+See the [README.md](web_app/README.md) in the web_app directory for details and library dependencies.
 
 ## Source Code Walk-throughs
 In the following sections, we walk you through all of the source files that make up this example.
@@ -28,14 +33,14 @@ c.	Javascript files
 
 In the following sections, we will present the SNAPpy scripts first, then the Python source code, then the various web browser source files.
  
-### Source Code Walk-through (SNAPpy script demo_sn171.py)
-The following code walk-through intersperses commentary (in this font and color) with source code (in this font and color).
+### Source Code Walk-through (SNAPpy script [demo_sn171.py](snappyImages/demo_sn171.py))
+The following code walk-through intersperses commentary with source code.
 
 Disclaimer – this script was created by modifying a copy of demo_sn173.py, and might have been written slightly differently had it had been created from scratch.
 
 First up: a copyright notice, and a doc-string saying “what the file is”.
 
-	Doc-strings are extra-handy in SNAPpy scripts, because Portal uses them to auto-generate tooltips.
+Doc-strings are extra-handy in SNAPpy scripts, because Portal uses them to auto-generate tooltips.
 	
 ```python
 # Copyright (C) 2014 Synapse Wireless, Inc.
@@ -233,8 +238,8 @@ def lights(pattern):
     writePin(LED2, led_state)
 ```
 
-### Source Code Walk-through (SNAPpy script nv_settings.py)
-The following code walk-through intersperses commentary (in this font and color) with source code (in this font and color).
+### Source Code Walk-through (SNAPpy script [nv_settings.py](snappyImages/nv_settings.py))
+The following code walk-through intersperses commentary with source code.
 
 This script won’t do anything by itself – it is a helper script, intended to be imported and called by other SNAPpy scripts.
 
@@ -312,8 +317,8 @@ I will point out again the use of the explicit “global” specifier to let SNA
 
 SIDE NOTE – if you dislike global variables, the above code could be re-written such that check_nv() returned a “reboot is needed” value, which init_nv_settings() could keep track of itself. The trade-off would be longer, trickier code, but you will sometimes see this alternate approach used in other example scripts.
  
-### Source Code Walk-through (SNAPpy script batmon.py)
-The following code walk-through intersperses commentary (in this font and color) with source code (in this font and color).
+### Source Code Walk-through (SNAPpy script [batmon.py](snappyImages/batmon.py))
+The following code walk-through intersperses commentary with source code.
 
 This script won’t do anything by itself – it is a helper script, intended to be imported and called by other SNAPpy scripts.
 
@@ -417,8 +422,8 @@ NOTE – the hardware cannot tell if it is running from a battery or an external
 
 SIDE NOTE – the lower the voltage actually is, the longer it will take this routine to find a match and report back a value.
  
-### Source Code Walk-through (SNAPpy script SN173.py)
-The following code walk-through intersperses commentary (in this font and color) with source code (in this font and color).
+### Source Code Walk-through (SNAPpy script [SN173.py](snappyImages/SN173.py))
+The following code walk-through intersperses commentary with source code.
 
 This script won’t do anything by itself – it is a helper script, intended to be imported and called by other SNAPpy scripts.
 
@@ -460,10 +465,10 @@ Tuples have the advantage of being able to hold more than “just bytes”. SNAP
 
 NOTE – this marks the end of the SNAPpy script walk-throughs. In the next section we will be discussing source code that runs on the E20 Gateway.
  
-### Source Code Walk-through (Python file app_server.py)
+### Source Code Walk-through (Python file [app_server.py](web_app/app_server.py))
 Reminder – the following code runs on the E20 Gateway (not on the SNAP Nodes, not in the web browsers).
 
-The following code walk-through intersperses commentary (in this font and color) with source code (in this font and color).
+The following code walk-through intersperses commentary with source code.
 
 There’s not much to say about the Copyright notice and top-level doc-string.
 
@@ -516,7 +521,7 @@ if sys.platform == "linux2":
     snap_license = None
 ```
 
-When SNAP Connect is running on an E20 (see above), the SNAP Address is determined by the last three bytes of the Ethernet MAC Address, and you do not need a license file. The Gateway hardware is your license).    
+When SNAP Connect is running on an E20 (see above), the SNAP Address is determined by the last three bytes of the Ethernet MAC Address, and you do not need a license file. The Gateway hardware is your license.    
 
 ```python
     # Allow time for wifi AP to initialize (TODO: remove this and handle by server exception)
@@ -699,7 +704,7 @@ This “renaming” feature is handy here, because the calling code should not c
 There are many parameters to the SNAP Connect constructor, but most of them take assume default values if you do not specify otherwise. The things that are specified here are:
 
 1. License_file - Up towards the top of this source file, we specified which license file we wanted to use (or set this variable to None if we were running on an E20 Gateway)
-1. Addr - We also chose our SNAP Address if we were running on  a PC
+1. Addr - We also chose our SNAP Address if we were running on a PC
 1. Funcs - The “dictionary of functions others are allowed to call” was documented on the top of this page
 1. Scheduler – looks scary, but see next paragraph
  
@@ -903,8 +908,8 @@ if __name__ == '__main__':
  
 These last walk-throughs are all about files that reside on the E20 (in the www directory used by app_server.py), but they get “served up” to the web browsers, and interpreted/executed/displayed there. Please note that they are in a mix of HTML, Cascading Style Sheet (CSS), and Javascript files.
 
-### Source Code Walk-through (Web Page index.html)
-The following code walk-through intersperses commentary (in this font and color) with source code (in this font and color). Also note that some whitespace has been removed relative to the original source file to better fit the printed page.
+### Source Code Walk-through (Web Page [index.html](web_app/www/index.html))
+The following code walk-through intersperses commentary with source code. Also note that some whitespace has been removed relative to the original source file to better fit the printed page.
 
 ```html
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
@@ -975,8 +980,8 @@ NOTE – if you relabel these columns, you must update the Javascript code too (
 
 These are just the corresponding ending tags to the `<body>` and `<html>` tags up above.
  
-### Source Code Walk-through (Cascading Style Sheet mainstyle.css)
-The following code walk-through intersperses commentary (in this font and color) with source code (in this font and color). 
+### Source Code Walk-through (Cascading Style Sheet [mainstyle.css](web_app/www/mainstyle.css))
+The following code walk-through intersperses commentary with source code. 
 
 ```css
 /* Styling for SNAP demo */
@@ -1128,8 +1133,8 @@ input[type=checkbox] {
 }
 ```
 
-### Source Code Walk-through (Javascript File main.js)
-The following code walk-through intersperses commentary (in this font and color) with source code (in this font and color). 
+### Source Code Walk-through (Javascript File [main.js](web_app/www/main.js)
+The following code walk-through intersperses commentary with source code. 
 
 NOTE – the bulk of the Web Socket specific code has been split out into a separate file “syn_websocket.js” – the walk-through for that file is after this one. Also, the Javascript library “JQuery” is used by this example code. You can learn more about the JQuery library at https://jquery.org .
 
@@ -1226,8 +1231,8 @@ function set_lights(addr, pattern) {
 
 NOTE – the send_message routine is defined in syn_websockets,js, described next.
  
-### Source Code Walk-through (Javascript File syn_websocket.js)
-The following code walk-through intersperses commentary (in this font and color) with source code (in this font and color). 
+### Source Code Walk-through (Javascript File [syn_websocket.js](web_app/www/syn_websocket.js))
+The following code walk-through intersperses commentary with source code. 
 
 ```js
 // (c) Copyright 2015, Synapse Wireless, Inc.
