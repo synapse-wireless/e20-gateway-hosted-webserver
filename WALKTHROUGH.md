@@ -108,7 +108,7 @@ Here the digital output pins are initialized. Observant readers will notice that
 
 Setting the “pin direction” to True makes each of them be outputs. Next the code goes ahead and does an initial “blip” on each LED.
 
-NOTE – the standard form of the pulsePin() routine is non-blocking. These calls initiate the “blips” on each LED, but they do not wait for the blips (blinks) to complete. Each will occur in parallel, while other code runs.
+**NOTE** – the standard form of the pulsePin() routine is non-blocking. These calls initiate the “blips” on each LED, but they do not wait for the blips (blinks) to complete. Each will occur in parallel, while other code runs.
 ```python
     pulsePin(LED1, 500, True)
     pulsePin(LED2, 300, True)
@@ -134,7 +134,7 @@ Also note that SWITCH_TUPLE was defined in imported file SN173 – you won’t f
 
 This next subroutine gets called automatically once every second, because of the @setHook() decorator placed immediately before it.
 
-NOTE – SNAPpy also supports “timer hooks” for 100, 10, and 1 millisecond. 
+**NOTE** – SNAPpy also supports “timer hooks” for 100, 10, and 1 millisecond. 
 
 ```python
 @setHook(HOOK_1S)
@@ -154,7 +154,7 @@ We mentioned up above that this script would send reports every 5 seconds, even 
         send_status()
 ```
 
-NOTE – subroutine send_status() is defined further below.
+**NOTE** – subroutine send_status() is defined further below.
 
 In addition to “time events”, another asynchronous event that can occur in this SNAP Node is “button pushes” from the user. Because of our use of monitorPin() up above, the SNAPpy Virtual Machine will automatically generate HOOK_GPIN events when those buttons are pressed. The following routine is invoked when those HOOK_GPIN events are created, due to the use of a @setHook() generator right before the subroutine.
 
@@ -311,11 +311,11 @@ def check_nv(param, val):
 
 The above subroutine simply checks to see if the specified param matches its desired val, and changes it if not.
 
-NOTE – functions loadNvParam() and saveNvParam() are built-in SNAPpy functions that are always available to your scripts.
+**NOTE** – functions loadNvParam() and saveNvParam() are built-in SNAPpy functions that are always available to your scripts.
 
 I will point out again the use of the explicit “global” specifier to let SNAPpy/Python know that it’s the global _needs_reboot variable that check_nv() wants to change, not a dynamically created local variable with the same name.
 
-SIDE NOTE – if you dislike global variables, the above code could be re-written such that check_nv() returned a “reboot is needed” value, which init_nv_settings() could keep track of itself. The trade-off would be longer, trickier code, but you will sometimes see this alternate approach used in other example scripts.
+**SIDE NOTE** – if you dislike global variables, the above code could be re-written such that check_nv() returned a “reboot is needed” value, which init_nv_settings() could keep track of itself. The trade-off would be longer, trickier code, but you will sometimes see this alternate approach used in other example scripts.
  
 ### Source Code Walk-through (SNAPpy script [batmon.py](snappyImages/batmon.py))
 The following code walk-through intersperses commentary with source code.
@@ -418,9 +418,9 @@ If the above loop did not find a match (none of the HIGH RANGE settings were “
     return 0
 ```
 
-NOTE – the hardware cannot tell if it is running from a battery or an external DC power supply. So, the name of the routine is a little inaccurate.
+**NOTE** – the hardware cannot tell if it is running from a battery or an external DC power supply. So, the name of the routine is a little inaccurate.
 
-SIDE NOTE – the lower the voltage actually is, the longer it will take this routine to find a match and report back a value.
+**SIDE NOTE** – the lower the voltage actually is, the longer it will take this routine to find a match and report back a value.
  
 ### Source Code Walk-through (SNAPpy script [SN173.py](snappyImages/SN173.py))
 The following code walk-through intersperses commentary with source code.
@@ -457,13 +457,13 @@ LED_TUPLE = (LED1, LED2, LED3, LED4)
 
 The same comment about the advantage of tuples made up above applies here.
 
-SIDE NOTE – you will see tuples used instead of byte-lists in many of our example scripts because we have had tuples longer – SNAPpy did not support any sort of lists until version 2.6.
+**SIDE NOTE** – you will see tuples used instead of byte-lists in many of our example scripts because we have had tuples longer – SNAPpy did not support any sort of lists until version 2.6.
 
 In many cases, tuples and byte-lists can be used interchangeably.
 
 Tuples have the advantage of being able to hold more than “just bytes”. SNAPpy byte-lists have the advantage of being more compact. They are just as small as character strings (and in fact, share the same RAM inside of the SNAP Node).
 
-NOTE – this marks the end of the SNAPpy script walk-throughs. In the next section we will be discussing source code that runs on the E20 Gateway.
+**NOTE** – this marks the end of the SNAPpy script walk-throughs. In the next section we will be discussing source code that runs on the E20 Gateway.
  
 ### Source Code Walk-through (Python file [app_server.py](web_app/app_server.py))
 Reminder – the following code runs on the E20 Gateway (not on the SNAP Nodes, not in the web browsers).
@@ -579,7 +579,7 @@ class WebSocketHandler(tornado.websocket.WebSocketHandler):
 
 In the previous line of code, that’s “waiters” as in “web browsers who are waiting for data”. More importantly, notice we did not say “this.waiters = set()”. This set is going to be shared among all instances of this class.
 
-Side Note – the advantage of a set over a list is that using a set gives us “ignore any duplicates” capability for free (If you add something to a set more than once, it has no effect).
+**SIDE NOTE** – the advantage of a set over a list is that using a set gives us “ignore any duplicates” capability for free (If you add something to a set more than once, it has no effect).
 
 This next function is required in all derivatives of tornado.websocket.WebSocketHandler, and controls backwards compatibility. Here we chose to allow the older web browsers - returning False instead of True would have made this web server “more strict”.
 
@@ -620,7 +620,7 @@ The “try/except” statement serves two purposes here:
 1. It ensures that an issue with one browser session does not prevent other browser sessions from being updated
 2. By use of the log.error() statement, it gives us a way to learn about any issues that occurred (assuming we actually bother to look in the log file)
 
-NOTE – the above code was sending data from the web server (this Python program) to one or more web browsers. This next routine is how the web browsers can send incoming messages, which then get translated into SNAP Connect function calls.
+**NOTE** – the above code was sending data from the web server (this Python program) to one or more web browsers. This next routine is how the web browsers can send incoming messages, which then get translated into SNAP Connect function calls.
 
 ```python
     def on_message(self, message):
@@ -636,7 +636,7 @@ This next line converts the message from a “string containing JSON-style text�
 
 Below you see another use of the try/except statement. The deal here is that the web browser may be asking for a Python function that does not exist.
 
-NOTE – we will see the available set of Python functions defined later on in this walk-through. The important point here is that SNAP Connect only provides access to functions that you explicitly tell it to, it’s not enough just to have the routine exist within your program.
+**NOTE** – we will see the available set of Python functions defined later on in this walk-through. The important point here is that SNAP Connect only provides access to functions that you explicitly tell it to, it’s not enough just to have the routine exist within your program.
 
 ```python
         try:
@@ -717,7 +717,7 @@ The “scheduler” parameter is just SNAP Connect’s way of cooperating more f
 
 There are many “knobs” that you can twist in SNAP Connect, either through save_nv_param() or other functions. The code above is keeping all but one at their default values. The RPC_CRC feature bit of NV #11 is being set so that SNAP Connect will both provide and accept Remote Procedure Call (RPC) packets with this extra CRC appended.
 
-NOTE – As of version 2.5, SNAP also supports a PACKET_CRC that applies to all packets, not just RPC packets. The reason we don’t usually enable this in our examples is two-fold:
+**NOTE** – As of version 2.5, SNAP also supports a PACKET_CRC that applies to all packets, not just RPC packets. The reason we don’t usually enable this in our examples is two-fold:
 
 1. PACKET_CRC is very strict – if you use it at all, you have to use it everywhere. Works great in a real deployment, can be a nuisance to get everything switched over if you are just trying to take a demo for a “test drive”
 1. PACKET_CRC is much newer (2014), and users may not have firmware capable of doing it deployed throughout their networks yet. RPC_CRC is several years older, and by now is almost universally deployed.
@@ -734,7 +734,7 @@ I mentioned up above that there were other functions besides save_nv_param() tha
 
 By default, SNAP Connect does nothing. If you want it to be talking over a serial port, and/or listening for incoming TCP/IP connections, you have to explicitly call open_serial() and accept_tcp().
 
-NOTE – there is also a connect_tcp() function available for making outbound connections. For example, maybe you are running another SNAP Connect instance up in “the cloud”.
+**NOTE** – there is also a connect_tcp() function available for making outbound connections. For example, maybe you are running another SNAP Connect instance up in “the cloud”.
 
 These next two lines let us “hook” additional code to the occurrences of TCP/IP connections opening and closing. In retrospect, these probably should have been named “HOOK_TCPIP_OPENED” and “HOOK_TCPIP_CLOSED”, but as I already mentioned, “SNAPCOM” was the original name for the codebase.        
 
@@ -931,7 +931,7 @@ The above HTML is standard boilerplate…
 
 The above HTML defines the header of the page (for example, the `<title>`), plus pulls in four other files.
 
-NOTE – many of these other files have their own walk-through sections, later in this document.
+**NOTE** – many of these other files have their own walk-through sections, later in this document.
 
 Here I will just note that the file extensions give an indication of what each file contributes to the web page:
 
@@ -942,7 +942,7 @@ For an example of just how much impact a CSS file can have on a website without 
 
 Next the definition of the body (main portion) of the web page begins.
 
-NOTE – the body definition is everything between the `<body>` and `</body>` tags.
+**NOTE** – the body definition is everything between the `<body>` and `</body>` tags.
 
 ```html
   <body style="background:white">
@@ -953,7 +953,7 @@ NOTE – the body definition is everything between the `<body>` and `</body>` ta
 
 Portions of a web page are split up into divisions. The one above pulls in the spiffy banner.jpg that goes across the top of the page (“width=100%”).
 
-NOTE – the main purpose of giving “div”s identifiers (“id”s such as id=”banner”) here is so that they can be referenced in the CSS files.
+**NOTE** – the main purpose of giving “div”s identifiers (“id”s such as id=”banner”) here is so that they can be referenced in the CSS files.
 
 ```html
     <div class="main_page">
@@ -971,7 +971,7 @@ NOTE – the main purpose of giving “div”s identifiers (“id”s such as id
 
 The main portion of the page is taken up by a dynamic table (dynamic in that the number of rows is not fixed, but instead depends on how many live SNAP Nodes you have reporting in, plus the contents of each column represent “live” data). Each table row (`<tr>`, `</tr>`) is made up of multiple columns. Each table column (`<th>`, `</th>`, where “th” stands for “t”able “h”eading) has a header defined here. The actual values get set by some Javascript code that is covered separately.
 
-NOTE – if you relabel these columns, you must update the Javascript code too (or else your live data will not fill in).
+**NOTE** – if you relabel these columns, you must update the Javascript code too (or else your live data will not fill in).
 
 ```python
   </body>
@@ -1045,9 +1045,9 @@ aside, nav, article, figure {
 
 Now we get to the interesting stuff… heights, colors, fonts, etc. All specified so that the page has exactly the appearance we want.
 
-NOTE – the “#” prefix indicates the use of an “id” from within the HTML file. So here we are styling the “banner” (id=”banner” in the HTML file), followed by the title of the page.
+**NOTE** – the “#” prefix indicates the use of an “id” from within the HTML file. So here we are styling the “banner” (id=”banner” in the HTML file), followed by the title of the page.
 
-Side Note – the sections do not have to be styled in the order of their occurrence within the HTML file. For example, the title actually occurs above the banner on the actual web page.
+**SIDE NOTE** – the sections do not have to be styled in the order of their occurrence within the HTML file. For example, the title actually occurs above the banner on the actual web page.
 
 ```css
 #banner {
@@ -1136,7 +1136,7 @@ input[type=checkbox] {
 ### Source Code Walk-through (Javascript File [main.js](web_app/www/main.js)
 The following code walk-through intersperses commentary with source code. 
 
-NOTE – the bulk of the Web Socket specific code has been split out into a separate file “syn_websocket.js” – the walk-through for that file is after this one. Also, the Javascript library “JQuery” is used by this example code. You can learn more about the JQuery library at https://jquery.org .
+**NOTE** – the bulk of the Web Socket specific code has been split out into a separate file “syn_websocket.js” – the walk-through for that file is after this one. Also, the Javascript library “JQuery” is used by this example code. You can learn more about the JQuery library at https://jquery.org .
 
 ```js
 // (c) Copyright 2015, Synapse Wireless, Inc.
@@ -1229,7 +1229,7 @@ function set_lights(addr, pattern) {
 }
 ```
 
-NOTE – the send_message routine is defined in syn_websockets,js, described next.
+**NOTE** – the send_message routine is defined in syn_websockets,js, described next.
  
 ### Source Code Walk-through (Javascript File [syn_websocket.js](web_app/www/syn_websocket.js))
 The following code walk-through intersperses commentary with source code. 
@@ -1336,7 +1336,7 @@ You will notice we do not blindly trust the incoming request, but use a “try�
 			window[message.funcname].apply(window, message.args);
 ```
 
-NOTE - unlike the SNAP Connect “you must state what is to be callable” model, with the above code any Javascript function in your web interface is potentially callable over the web socket. If you wanted to institute some sort of restrictions, the above spot in the code is where you would do so.
+**NOTE** - unlike the SNAP Connect “you must state what is to be callable” model, with the above code any Javascript function in your web interface is potentially callable over the web socket. If you wanted to institute some sort of restrictions, the above spot in the code is where you would do so.
 
 ```js
 		} catch (err) {
