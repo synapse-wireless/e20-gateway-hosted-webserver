@@ -19,17 +19,17 @@ In the following sections, we walk you through all of the source files that make
 
 There are two broad organizing categories that apply:
 
-1)	“Location” - Where the source files apply / where they are used
-2)	“File Type” - Source file language
+1. “Location” - Where the source files apply / where they are used
+1. “File Type” - Source file language
 
 The possible “locations” and “types” are:
 
-1)	Inside a SNAP Node – this will usually be SNAPpy source files
-2)	Inside the E20 Gateway – this will usually be Python source files
-3)	Inside the web browser – multiple file types apply here:
-a.	HTML files
-b.	CSS files
-c.	Javascript files
+1. Inside a SNAP Node – this will usually be SNAPpy source files
+1. Inside the E20 Gateway – this will usually be Python source files
+1. Inside the web browser – multiple file types apply here:
+  1. HTML files
+  1. CSS files
+  1. Javascript files
 
 In the following sections, we will present the SNAPpy scripts first, then the Python source code, then the various web browser source files.
  
