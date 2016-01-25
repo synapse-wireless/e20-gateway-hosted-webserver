@@ -432,7 +432,11 @@ As mentioned previously, the use of a SN173 helper script in a SN171 example scr
 ```python
 # Copyright (C) 2014 Synapse Wireless, Inc.
 """SN173 definitions"""
+```
+
 The following constants define the "SNAPpy IO to Switch" mappings for a SN173 demo board. The SN171 can reuse the "S1" definition because when we designed the SN173, we made its *first button* match the SN171's *only button* on purpose, knowing that scripts would often be shared between them.
+
+```python
 S1 = 20
 S2 = 0
 S3 = 1
