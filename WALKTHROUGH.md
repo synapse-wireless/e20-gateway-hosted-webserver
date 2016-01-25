@@ -10,7 +10,7 @@ The Synapse Portal IDE will allow complete embedded module development, as well 
 
 > https://forums.synapse-wireless.com/showthread.php?t=9
 
-The web application is a basic Python program built with high-performance libraries, Tornado and SNAP Connect. The Javascript/HTML is kept deliberately simple for ease of understanding, although it showcases a low-latency websockets technique. This can be easily extended to REST interfaces, and other web/backend approaches to fit application requirements.
+The web application is a basic Python program built with high-performance libraries, Tornado and SNAP Connect. The JavaScript/HTML is kept deliberately simple for ease of understanding, although it showcases a low-latency websockets technique. This can be easily extended to REST interfaces, and other web/backend approaches to fit application requirements.
 
 See the [README.md](web_app/README.md) in the web_app directory for details and library dependencies.
 
@@ -29,7 +29,7 @@ The possible "locations" and "types" are:
 1. Inside the web browser – multiple file types apply here:
   1. HTML files
   1. CSS files
-  1. Javascript files
+  1. JavaScript files
 
 In the following sections, we will present the SNAPpy scripts first, then the Python source code, then the various web browser source files.
  
@@ -940,7 +940,7 @@ The above HTML defines the header of the page (for example, the `<title>`), plus
 Here I will just note that the file extensions give an indication of what each file contributes to the web page:
 
 - Cascading Style Sheets (.css files) affect the look of the page, but not its content
-- Javascript (.js) files actually add *code* to the web page
+- JavaScript (.js) files actually add *code* to the web page
 
 For an example of *just how much impact* a CSS file can have on a website *without* changing the actual HTML and CSS, please see http://www.csszengarden.com/ 
 
@@ -1137,14 +1137,14 @@ input[type=checkbox] {
 }
 ```
 
-### Source Code Walk-through (Javascript File [main.js](web_app/www/main.js)
+### Source Code Walk-through (JavaScript File [main.js](web_app/www/main.js)
 The following code walk-through intersperses commentary with source code. 
 
-**NOTE** – the bulk of the Web Socket specific code has been split out into a separate file "syn_websocket.js" – the walk-through for *that* file is after this one. Also, the Javascript library "JQuery" is used by this example code. You can learn more about the JQuery library at https://jquery.org .
+**NOTE** – the bulk of the Web Socket specific code has been split out into a separate file "syn_websocket.js" – the walk-through for *that* file is after this one. Also, the JavaScript library "JQuery" is used by this example code. You can learn more about the JQuery library at https://jquery.org .
 
 ```js
 // (c) Copyright 2015, Synapse Wireless, Inc.
-// Main javascript file for SNAP Demo
+// Main JavaScript file for SNAP Demo
 (Copyright and file-level comment…)
 // Document Loaded callback
 $(document).ready(function() {
@@ -1235,14 +1235,14 @@ function set_lights(addr, pattern) {
 
 **NOTE** – the send_message routine is defined in syn_websockets,js, described next.
  
-### Source Code Walk-through (Javascript File [syn_websocket.js](web_app/www/syn_websocket.js))
+### Source Code Walk-through (JavaScript File [syn_websocket.js](web_app/www/syn_websocket.js))
 The following code walk-through intersperses commentary with source code. 
 
 ```js
 // (c) Copyright 2015, Synapse Wireless, Inc.
 ```
 
-The other Javascript code can call the following function to send messages over the Web Socket interface to the app_server.py code running on the E20 Gateway.
+The other JavaScript code can call the following function to send messages over the Web Socket interface to the app_server.py code running on the E20 Gateway.
 
 ```js
 // Send a message over our WebSocket to SNAP Connect server
@@ -1274,7 +1274,7 @@ function mcastRpc(group, ttl, func, args) {
     ['mcastRpc', group, ttl, func].concat(args));
 ```
 
-In case it is not obvious, in Javascript all arrays have the ability to call their member functions (such as concat()), *even if they have not been placed into a named variable*.
+In case it is not obvious, in JavaScript all arrays have the ability to call their member functions (such as concat()), *even if they have not been placed into a named variable*.
 
 To give another example, [3, 2, 1].sort() becomes [1, 2, 3].
 
@@ -1284,14 +1284,14 @@ To give another example, [3, 2, 1].sort() becomes [1, 2, 3].
 // WebSocket Hub: Establish a socket between browser and SNAP Connect Web server. Provide API to send/receive messages
 ```
 
-Javascript doesn't really have "true" classes, but you can get the same effect by using a Javascript dictionary that *contains* the "member" variables and functions you would want such a class to have. So, you could read "var wsHub" as "class wsHub".
+JavaScript doesn't really have "true" classes, but you can get the same effect by using a JavaScript dictionary that *contains* the "member" variables and functions you would want such a class to have. So, you could read "var wsHub" as "class wsHub".
 
 ```js
 var wsHub = {
     socket: null,
 ```
 
-Javascript syntax can be a little klunky. Here what the code is saying is "start is a function that does...".
+JavaScript syntax can be a little klunky. Here what the code is saying is "start is a function that does...".
 
 ```js
     start: function() {
@@ -1340,7 +1340,7 @@ You will notice we do **not** blindly trust the incoming request, but use a "try
 			window[message.funcname].apply(window, message.args);
 ```
 
-**NOTE** - unlike the SNAP Connect "you must state what is to be callable" model, with the above code any Javascript function in your web interface is potentially callable over the web socket. If you wanted to institute some sort of restrictions, the above spot in the code is where you would do so.
+**NOTE** - unlike the SNAP Connect "you must state what is to be callable" model, with the above code any JavaScript function in your web interface is potentially callable over the web socket. If you wanted to institute some sort of restrictions, the above spot in the code is where you would do so.
 
 ```js
 		} catch (err) {
