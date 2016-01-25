@@ -89,7 +89,7 @@ def init():
 
 Here a subroutine (defined later in the script) is invoked. We'll discuss this routine later in this document.
 
-For here, just know that "NV" stands for Non-Volatile and refers to the configuration parameters kept in a dedicated region of the SNAP Node"s FLASH memory.
+For here, just know that "NV" stands for Non-Volatile and refers to the configuration parameters kept in a dedicated region of the SNAP Node's FLASH memory.
 
 ```python
     # Set basic mesh parameters
@@ -126,11 +126,11 @@ Here the input switches are configured. The same comment about configuring more 
         monitorPin(s, True)
 ```
 
-It"s worth mentioning that "for" statements were not supported in SNAPpy until version 2.6. If you are trying to use this example with an older version of firmware, you will need to substitute a manual "while loop" instead.
+It's worth mentioning that "for" statements were not supported in SNAPpy until version 2.6. If you are trying to use this example with an older version of firmware, you will need to substitute a manual "while loop" instead.
 
 Here you can see setPinDir(…, False) being used to program input (versus output) pins. You will also notice that the internal pullup resistors within the chip are being enabled, preventing them from "floating" and giving spurious readings. The SNAPpy Virtual Machine is also told to monitor each button, which will later result in HOOK_GPIN events being generated. (More on HOOK_GPIN later in this walk-through).
 
-Also note that SWITCH_TUPLE was defined in imported file SN173 – you won"t find it defined in this file.
+Also note that SWITCH_TUPLE was defined in imported file SN173 – you won't find it defined in this file.
 
 This next subroutine gets called automatically once every second, because of the @setHook() decorator placed immediately before it.
 
@@ -143,7 +143,7 @@ def tick1sec():
     global second_count
 ```
 
-The previous line is very important! If you don"t tell Python you really mean the global variable, it defaults to creating a local variable **of the same name** *when you change its value*. This is often a point of confusion to new Python (and SNAPpy, which is a modified subset of Python) programmers.
+The previous line is very important! If you don't tell Python you really mean the global variable, it defaults to creating a local variable **of the same name** *when you change its value*. This is often a point of confusion to new Python (and SNAPpy, which is a modified subset of Python) programmers.
 
 We mentioned up above that this script would send reports every 5 seconds, even if nothing has changed. The following code is what does that.
 
@@ -165,7 +165,7 @@ def pin_event(pin, is_set):
     global button_count
 ```
 
-Here the code is just making sure it"s a button press. On a node with more than one button, different buttons could trigger different actions.
+Here the code is just making sure it's a button press. On a node with more than one button, different buttons could trigger different actions.
 
 ```python
     if pin == BUTTON:
@@ -174,7 +174,7 @@ Here the code is just making sure it"s a button press. On a node with more than 
 Because of how this board is wired up, pressing the button connects the digital input pin to GND, resulting in a reading of False. When the button is released, it is disconnected from GND and the internal pull-up resistors (enabled earlier) take it back True (HIGH).
 
 In this particular script, we have chosen to increase the "button press count" on the push (versus the release).
-Scripts could actually choose to do different actions on each (on both the True and the False value). It"s also common to take the duration of the press into account (see for example MCastCounter.py) but that is not done here.
+Scripts could actually choose to do different actions on each (on both the True and the False value). It's also common to take the duration of the press into account (see for example MCastCounter.py) but that is not done here.
 
 ```python
         if not is_set:
@@ -182,7 +182,7 @@ Scripts could actually choose to do different actions on each (on both the True 
         send_status()
 ```
 
-There"s that send_status() routine again, and we still don"t know anything about it.
+There's that send_status() routine again, and we still don't know anything about it.
 
 Luckily, it is next in the source code. 
 
@@ -214,7 +214,7 @@ Here is what generates the actual Remote Procedure Call (RPC) packet.
 
 The `1` here means **group 1**, which is the "broadcast" group in SNAP. The `3` specifies how many "hops" the status report should travel.
 
-‘status" is the name of the function being invoked, and the last three parameters to mcastRpc() become the parameters to status() *at the receiving nodes*. In other words, they will see this as
+‘status' is the name of the function being invoked, and the last three parameters to mcastRpc() become the parameters to status() *at the receiving nodes*. In other words, they will see this as
 
 ```python
 Status( batmon_mv(), not readPin(BUTTON), button_count )
@@ -241,7 +241,7 @@ def lights(pattern):
 ### Source Code Walk-through (SNAPpy script [nv_settings.py](snappyImages/nv_settings.py))
 The following code walk-through intersperses commentary with source code.
 
-This script won"t do anything by itself – it is a *helper script*, intended to be imported and called by other SNAPpy scripts.
+This script won't do anything by itself – it is a *helper script*, intended to be imported and called by other SNAPpy scripts.
 
 ```python
 # Copyright (C) 2014 Synapse Wireless, Inc.
@@ -297,7 +297,7 @@ You will also see that the code is keeping track of any changes (variable needs_
 
 This is because most SNAP NV Parameter changes *only take effect at system startup*. Changes to those parameters are ignored by running code.
 
-Why doesn"t the core firmware monitor those parameters for changes **all of the time**?
+Why doesn't the core firmware monitor those parameters for changes **all of the time**?
 
 Because we wanted to free up code space for more important functions.
 
@@ -313,14 +313,14 @@ The above subroutine simply checks to see if the specified param matches its des
 
 **NOTE** – functions loadNvParam() and saveNvParam() are built-in SNAPpy functions that are always available to your scripts.
 
-I will point out again the use of the explicit "global" specifier to let SNAPpy/Python know that it"s the **global** _needs_reboot variable that check_nv() wants to change, **not** a dynamically created local variable with the same name.
+I will point out again the use of the explicit "global" specifier to let SNAPpy/Python know that it's the **global** _needs_reboot variable that check_nv() wants to change, **not** a dynamically created local variable with the same name.
 
 **SIDE NOTE** – if you dislike global variables, the above code could be re-written such that check_nv() **returned** a "reboot is needed" value, which init_nv_settings() could keep track of itself. The trade-off would be longer, trickier code, but you will sometimes see this alternate approach used in other example scripts.
  
 ### Source Code Walk-through (SNAPpy script [batmon.py](snappyImages/batmon.py))
 The following code walk-through intersperses commentary with source code.
 
-This script won"t do anything by itself – it is a *helper script*, intended to be imported and called by other SNAPpy scripts.
+This script won't do anything by itself – it is a *helper script*, intended to be imported and called by other SNAPpy scripts.
 
 ```python
 # Copyright (C) 2014 Synapse Wireless, Inc.
@@ -354,7 +354,7 @@ low_range = (1700, 1750, 1800, 1850, 1900, 1950, 2000, 2050, 2100, 2150, 2200, 2
 high_range = (2550, 2625, 2700, 2775, 2850, 2925, 3000, 3075, 3150, 3225, 3300, 3375, 3450, 3525, 3600, 3675)
 ```
 
-Again, this sort of information came straight out of the manufacturer"s datasheets.
+Again, this sort of information came straight out of the manufacturer's datasheets.
 
 ```python
 def batmon_mv():
@@ -396,7 +396,7 @@ The code then reads back the "my battery is OK" status bit from the chip. If the
         if peek(BATMON_REG) & BATMON_OK:
 ```
 
-This next line if very important. SNAPmakes use of this same voltage monitor to tell if it is OK to be re-programming the node"s FLASH memory (for example, saveNvParam() or SNAPpy script uploads. We have to be sure it"s back to its normal setting.
+This next line if very important. SNAPmakes use of this same voltage monitor to tell if it is OK to be re-programming the node's FLASH memory (for example, saveNvParam() or SNAPpy script uploads. We have to be sure it's back to its normal setting.
 
 ```python
             poke(BATMON_REG, BATMON_SNAP_DEFAULT)
@@ -425,14 +425,14 @@ If the above loop did not find a match (none of the HIGH RANGE settings were "OK
 ### Source Code Walk-through (SNAPpy script [SN173.py](snappyImages/SN173.py))
 The following code walk-through intersperses commentary with source code.
 
-This script won"t do anything by itself – it is a *helper script*, intended to be imported and called by other SNAPpy scripts.
+This script won't do anything by itself – it is a *helper script*, intended to be imported and called by other SNAPpy scripts.
 
 As mentioned previously, the use of a SN173 helper script in a SN171 example script is just a side effect of the SN173 demo being created first, and then the SN171 demo created via a quick "clone and modify".
 
 ```python
 # Copyright (C) 2014 Synapse Wireless, Inc.
 """SN173 definitions"""
-The following constants define the "SNAPpy IO to Switch" mappings for a SN173 demo board. The SN171 can reuse the "S1" definition because when we designed the SN173, we made its *first button* match the SN171"s *only button* on purpose, knowing that scripts would often be shared between them.
+The following constants define the "SNAPpy IO to Switch" mappings for a SN173 demo board. The SN171 can reuse the "S1" definition because when we designed the SN173, we made its *first button* match the SN171's *only button* on purpose, knowing that scripts would often be shared between them.
 S1 = 20
 S2 = 0
 S3 = 1
@@ -470,7 +470,7 @@ Tuples have the advantage of being able to hold more than "just bytes". SNAPpy b
 
 The following code walk-through intersperses commentary with source code.
 
-There"s not much to say about the Copyright notice and top-level doc-string.
+There's not much to say about the Copyright notice and top-level doc-string.
 
 ```python
 # (c) Copyright 2015, Synapse Wireless, Inc.
@@ -545,11 +545,11 @@ These next two lines are just specifying the name and location of that license f
     snap_license = os.path.join(cur_dir, 'SrvLicense.dat')
 ```
 
-All of the above was just "preparation" (imports and variable definitions). We haven"t actually provided any significant amount of code yet.
+All of the above was just "preparation" (imports and variable definitions). We haven't actually provided any significant amount of code yet.
 
 Now we start getting into some of the "meatier" sections. In this next stretch of code, we extend the basic tornado.websocket.WebSocketHandler class by sub-classing it into our own custom WebSocketHandler.
 
-Full explanation of Object Oriented Programming (OOP) is outside the scope of this walk-through, but a key takeaway here is that our derived class only has to provide the *differences* to the existing base class"s functionality. It"s also worth point out that WebSocketHandler communicates in two different directions:
+Full explanation of Object Oriented Programming (OOP) is outside the scope of this walk-through, but a key takeaway here is that our derived class only has to provide the *differences* to the existing base class's functionality. It's also worth point out that WebSocketHandler communicates in two different directions:
 
 1. Browser to server
 1. Server to browser
@@ -577,7 +577,7 @@ class WebSocketHandler(tornado.websocket.WebSocketHandler):
     waiters = set()    # Browser connections
 ```
 
-In the previous line of code, that"s "waiters" as in "web browsers who are waiting for data". More importantly, notice we did **not** say "this.waiters = set()". This set is going to be *shared* among **all** instances of this class.
+In the previous line of code, that's "waiters" as in "web browsers who are waiting for data". More importantly, notice we did **not** say "this.waiters = set()". This set is going to be *shared* among **all** instances of this class.
 
 **SIDE NOTE** – the advantage of a **set** over a **list** is that using a set gives us "ignore any duplicates" capability for free (If you add something to a set more than once, it has no effect).
 
@@ -636,7 +636,7 @@ This next line converts the message from a "string containing JSON-style text" i
 
 Below you see another use of the try/except statement. The deal here is that the web browser may be asking for a Python function that does not exist.
 
-**NOTE** – we will see the available set of Python functions defined later on in this walk-through. The important point here is that SNAP Connect only provides access to functions that you *explicitly* tell it to, it"s not enough just to have the routine exist within your program.
+**NOTE** – we will see the available set of Python functions defined later on in this walk-through. The important point here is that SNAP Connect only provides access to functions that you *explicitly* tell it to, it's not enough just to have the routine exist within your program.
 
 ```python
         try:
@@ -654,14 +654,14 @@ Even if the web browser called a valid function, it may not be doing so correctl
                 func(*args)
 ```
 
-That "*" in "*args" is worth mentioning. Python as the neat feature of being able to handle variable numbers of arguments easily. For example, if Python list args contains [1, ‘hello", True] (3 arguments), then invoking foo(*args) makes function foo () think you called it as foo(1, ‘hello", True). That"s 3 parameters (like we wanted). If we instead called foo(args), then foo would receive only *one* parameter, the list of 3 items.
+That "*" in "*args" is worth mentioning. Python as the neat feature of being able to handle variable numbers of arguments easily. For example, if Python list args contains [1, ‘hello', True] (3 arguments), then invoking foo(*args) makes function foo () think you called it as foo(1, ‘hello', True). That's 3 parameters (like we wanted). If we instead called foo(args), then foo would receive only *one* parameter, the list of 3 items.
 
 ```python
             except:
                 log.exception('Error calling function: %s' % str(parsed))
 ```
 
-That wraps up the WebSocketHandler class, and provides us one of several building blocks that we will need. Notice that at this point, this program hasn"t actually created a web server yet. It"s just getting prepared to do so.
+That wraps up the WebSocketHandler class, and provides us one of several building blocks that we will need. Notice that at this point, this program hasn't actually created a web server yet. It's just getting prepared to do so.
 Next up, the code defines (but does not actually create) another building block. The "SnapCom" object created below is what will actually be aware (actually make use of) the SNAP Connect library.
 
 Trivia – "SnapCom" was the internal project name of what became the SNAP Connect 3.x series of software. So, you will often run into code that refers to a "SNAP Connect instance" as a "snapcom". Here the situation is slightly different, as this "SnapCom" object *has* a SNAP Connect instance, versus *is* a SNAP Connect instance (Just keep reading if this is not clear yet).
@@ -708,7 +708,7 @@ There are many parameters to the SNAP Connect constructor, but most of them take
 1. Funcs - The "dictionary of functions others are allowed to call" was documented on the top of this page
 1. Scheduler – looks scary, but see next paragraph
  
-The "scheduler" parameter is just SNAP Connect"s way of cooperating more fully with other software libraries. When you provide an alternate scheduler (this is not required), SNAP Connect assumes you are going to set up some other code to "be in charge" of making sure all of the polling takes place. You will see that "other code" in a few more pages.
+The "scheduler" parameter is just SNAP Connect's way of cooperating more fully with other software libraries. When you provide an alternate scheduler (this is not required), SNAP Connect assumes you are going to set up some other code to "be in charge" of making sure all of the polling takes place. You will see that "other code" in a few more pages.
 
 ```python
         # Configure SNAP Connect params
@@ -717,7 +717,7 @@ The "scheduler" parameter is just SNAP Connect"s way of cooperating more fully w
 
 There are many "knobs" that you can twist in SNAP Connect, either through save_nv_param() or other functions. The code above is keeping all but one at their default values. The RPC_CRC feature bit of NV #11 is being set so that SNAP Connect will both provide and accept Remote Procedure Call (RPC) packets with this extra CRC appended.
 
-**NOTE** – As of version 2.5, SNAP also supports a PACKET_CRC that applies to **all** packets, not just **RPC** packets. The reason we don"t usually enable this in our examples is two-fold:
+**NOTE** – As of version 2.5, SNAP also supports a PACKET_CRC that applies to **all** packets, not just **RPC** packets. The reason we don't usually enable this in our examples is two-fold:
 
 1. PACKET_CRC is very strict – if you use it at all, you have to use it everywhere. Works great in a real deployment, can be a nuisance to get everything switched over if you are just trying to take a demo for a "test drive"
 1. PACKET_CRC is much newer (2014), and users may not have firmware capable of doing it deployed throughout their networks yet. RPC_CRC is several years older, and by now is almost universally deployed.
@@ -764,7 +764,7 @@ This next routine allows the other Python code to send messages to any connected
         WebSocketHandler.send_updates(message)
 ```
 
-The only subtle point in the send_ws() (that"s short for "send over websocket") routine up above is the use of a "class" method in the WebSocketHandler class (defined previously).
+The only subtle point in the send_ws() (that's short for "send over websocket") routine up above is the use of a "class" method in the WebSocketHandler class (defined previously).
 
 Because WebSocketHandler.send_updates() only used class *variables*, and was itself declared to be "class-wide", it can be invoked by outside code (like the routine above) *without* having an actual reference to a WebSocketHandler.
 
@@ -788,7 +788,7 @@ This next routine is something the web browsers can call to turn the light (LED)
         addr = binascii.unhexlify(hex_addr)
         self.snapconnect.rpc(addr, 'lights', pattern)
 ```
-Since the above routine was pretty short, I"ll take this opportunity to mention that the binascii.unhexlify() function is being used to convert *binary* SNAP Addresses like "\xff\xee\xdd" (three bytes, and not readable when printed) to *ASCII* SNAP Addresses like "FFEEDD" (six characters, readable when printed).
+Since the above routine was pretty short, I'll take this opportunity to mention that the binascii.unhexlify() function is being used to convert *binary* SNAP Addresses like "\xff\xee\xdd" (three bytes, and not readable when printed) to *ASCII* SNAP Addresses like "FFEEDD" (six characters, readable when printed).
 
 This next routine appears to be leftover code, possibly predating the creation of the full WebSocketHandler class. (I could not find any other reference to it in this source file).        
 
@@ -849,13 +849,13 @@ Similar to how we tweaked some SNAP Connect settings after we instantiated it, b
         )
 ```
 
-"handlers" and "settings" variables have been defined, but we haven"t yet told tornado.web.Application to actually *use* them. See next line:
+"handlers" and "settings" variables have been defined, but we haven't yet told tornado.web.Application to actually *use* them. See next line:
 
 ```python
         tornado.web.Application.__init__(self, handlers, **settings)
 ```
 
-We *still* don"t actually have a running web server, just the building blocks from which to make on. This is where main() comes in.
+We *still* don't actually have a running web server, just the building blocks from which to make on. This is where main() comes in.
 
 ```python
 def main():
@@ -1122,7 +1122,7 @@ Most of the above should be pretty readable. Worth mentioning is that "px" is sh
 
 A little more styling for the table rows. Note that #000000 is "NO red, NO green, and NO blue", AKA "black".
 
-Finally, the checkboxes in the rightmost column are styled. Note that most browsers ignore commands they do not understand, so here the same function is specified *twice*, once for the non-Apple browsers, once for Apple"s webkit (Safari) browser.
+Finally, the checkboxes in the rightmost column are styled. Note that most browsers ignore commands they do not understand, so here the same function is specified *twice*, once for the non-Apple browsers, once for Apple's webkit (Safari) browser.
 
 ```css
 input[type=checkbox] {
@@ -1160,7 +1160,7 @@ function report_status(addr, batt, pressed, count) {
     console.log("status: " + addr + ", count=" + count);    
 ```
 
-(Just printing part of the report for debugging purposes. The users will only see this if they look at the web browser"s console log.)
+(Just printing part of the report for debugging purposes. The users will only see this if they look at the web browser's console log.)
 
 ```js
     // If there's not already a table row for this address, append one.
@@ -1174,7 +1174,7 @@ The following search bears explanation… when the rows are *created*, the code 
         // Make a new row
 ```
 
-Each row has a check box on the far right that allows you to control an LED on the SNAP Node. It"s the one field that did not come from the node (so we have to create here).
+Each row has a check box on the far right that allows you to control an LED on the SNAP Node. It's the one field that did not come from the node (so we have to create here).
 
 ```js
         var inp_cell = '<td><input type="checkbox"/></td>';
@@ -1280,7 +1280,7 @@ To give another example, [3, 2, 1].sort() becomes [1, 2, 3].
 // WebSocket Hub: Establish a socket between browser and SNAP Connect Web server. Provide API to send/receive messages
 ```
 
-Javascript doesn"t really have "true" classes, but you can get the same effect by using a Javascript dictionary that *contains* the "member" variables and functions you would want such a class to have. So, you could read "var wsHub" as "class wsHub".
+Javascript doesn't really have "true" classes, but you can get the same effect by using a Javascript dictionary that *contains* the "member" variables and functions you would want such a class to have. So, you could read "var wsHub" as "class wsHub".
 
 ```js
 var wsHub = {
@@ -1347,7 +1347,7 @@ You will notice we do **not** blindly trust the incoming request, but use a "try
 };
 ```
 
-This final routine was used to test the initial Web Socket server. I mentioned up above that any function would be callable. Below we have provided a function, just to have something to call. Because do_print() outputs to the web browser"s console log, you can easily verify that the data path between app_server.py and this file is working.
+This final routine was used to test the initial Web Socket server. I mentioned up above that any function would be callable. Below we have provided a function, just to have something to call. Because do_print() outputs to the web browser's console log, you can easily verify that the data path between app_server.py and this file is working.
 
 ```js
 // wsHub Callback: Debug log function - TEST
