@@ -1,5 +1,5 @@
 ![](https://cloud.githubusercontent.com/assets/1317406/12406044/32cd9916-be0f-11e5-9b18-1547f284f878.png)
-# E20 Example – Gateway-Hosted Web Server
+# E20 Example - Gateway-Hosted Web Server
 
 This example showcases the following products (for example, from a Synapse EK5100 kit):
 
