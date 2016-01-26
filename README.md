@@ -31,18 +31,18 @@ Power up the E20 and use a PC or mobile device to connect to its WiFi access poi
 > **Password:** synapse1
 
 #### Visit the E20's SNAP node status page
-Open a web browser on that PC or mobile device, and navigate to the E20’s URL:  http://192.168.0.1
+Open a web browser on that PC or mobile device, and navigate to the E20's URL:  http://192.168.0.1
 
 The web page will display a simple table of wireless SNAP nodes reporting their "status". The SN171 boards run SNAPpy scripts which report status every 5 seconds, or when a button is pressed.
 
 #### Power the SN171 boards
-Connect the battery packs to the SN171 boards, and verify each pack’s switch is ON.
+Connect the battery packs to the SN171 boards, and verify each pack's switch is ON.
 
-You should see a blinking LED on each prototyping board. Also, you’ll see both devices show up in the HTML table displayed in your web browser.
+You should see a blinking LED on each prototyping board. Also, you'll see both devices show up in the HTML table displayed in your web browser.
 
-As you press the button on each board, you’ll see the press-count immediately updated in your browser. Also, the current state of each button will be reflected in real-time. In addition, the boards report their current battery level.
+As you press the button on each board, you'll see the press-count immediately updated in your browser. Also, the current state of each button will be reflected in real-time. In addition, the boards report their current battery level.
 
-**NOTE** – there is an "S1SEL" jumper on each SN171 board that selects between "button is RESET" and "button is GPIO_5". Make sure the jumper is in the position labeled "GPIO5" on the silk-screen, or the demo won’t work.
+**NOTE** – there is an "S1SEL" jumper on each SN171 board that selects between "button is RESET" and "button is GPIO_5". Make sure the jumper is in the position labeled "GPIO5" on the silk-screen, or the demo won't work.
 
 There is also a checkbox on each table row that controls an LED on the corresponding SNAP Node. Click it! 
 
@@ -56,9 +56,9 @@ First, load the SNAPpy script "demo_sn171.py" into the SN171 SNAP Nodes.
 
 Note that Portal has to have access to these SNAPpy scripts before it can upload them into your SNAP Nodes. The scripts are located in a subdirectory named "snappyImages" in the source code tree for this example.
 
-**Reminder** – you can manually copy all of the files in this example’s "snappyImages" directory into Portal’s "snappyImages" directory, or you can use Portal’s **Options: Set Working Directory...** feature to "aim" Portal at this example’s "snappyImages" **parent** directory.
+**Reminder** – you can manually copy all of the files in this example's "snappyImages" directory into Portal's "snappyImages" directory, or you can use Portal's **Options: Set Working Directory...** feature to "aim" Portal at this example's "snappyImages" **parent** directory.
 
-If you choose to copy the files, be sure to copy all of them (don’t forget batmon.py, nv_settings.py, and SN173.py, which get imported by demo_sn171.py).
+If you choose to copy the files, be sure to copy all of them (don't forget batmon.py, nv_settings.py, and SN173.py, which get imported by demo_sn171.py).
 
 #### Load the various "Linux Config" files for this demo onto your E20
 
