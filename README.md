@@ -87,4 +87,8 @@ The web application is a basic Python program built with high-performance librar
 
 See the README.md files in the [e20-sys](e20-sys) and [web_app](web_app) directories for more details and library dependencies.
 
+## License
+
+This example is available under Apache License version 2.0. See [LICENSE.md](LICENSE.md) for more information.
+
 <!-- meta-tags: vvv-e20, vvv-sn171, vvv-rf200, vvv-ek5100, vvv-snapconnect, vvv-js, vvv-html, vvv-python, vvv-example -->
