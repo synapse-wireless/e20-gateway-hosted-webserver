@@ -1,5 +1,5 @@
 # Contributing
-![](https://cloud.githubusercontent.com/assets/1317406/12735830/8f89335c-c910-11e5-8aca-84b954159623.png)
+![](https://cloud.githubusercontent.com/assets/1317406/12853560/606e97fa-cbfa-11e5-9af4-5458d9ba625b.png)
 
 We love pull requests from everyone. If you have any questions about contributing, please ask; we're here to help!
 
