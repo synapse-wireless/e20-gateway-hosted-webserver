@@ -1,4 +1,4 @@
-![](https://cloud.githubusercontent.com/assets/1317406/12406044/32cd9916-be0f-11e5-9b18-1547f284f878.png)
+[![](https://cloud.githubusercontent.com/assets/1317406/12406044/32cd9916-be0f-11e5-9b18-1547f284f878.png)](http://www.synapse-wireless.com/)
 # Software Guide for E20 Example - Gateway-Hosted Web Server
 For information about "what this example does", please refer to the corresponding [README.md](README.md) file in this repository.
 
